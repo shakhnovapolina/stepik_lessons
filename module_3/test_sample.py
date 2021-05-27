@@ -9,9 +9,9 @@ search_button_lang_locator = "//button[@class=\"btn btn-default\"]"
 def change_language():
     # Data
     lang_option = "fr"
-    search_h1_locator = "//div[@class=\"page-header action\"]/h1"
+    search_head_page_locator = "//div[@class=\"page-header action\"]/h1"
     franch_text_button = "Envoyer"
-    franch_text_h1 = "Tous les produits"
+    franch_head_page_text = "Tous les produits"
 
     try:
         # Arrange
@@ -32,9 +32,9 @@ def change_language():
         assert button_confirm_lang.text == franch_text_button, \
             f"Text on button must be -- {franch_text_button} --"
 
-        caption_catalog = browser.find_element_by_xpath(search_h1_locator)
-        assert caption_catalog.text == franch_text_h1, \
-            f"Text on the caption must be -- {franch_text_h1} --"
+        caption_catalog = browser.find_element_by_xpath(search_head_page_locator)
+        assert caption_catalog.text == franch_head_page_text, \
+            f"Text on the caption must be -- {franch_head_page_text} --"
 
     finally:
         browser.quit()
