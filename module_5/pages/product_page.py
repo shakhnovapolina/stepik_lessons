@@ -30,3 +30,11 @@ class ProductPage(BasePage):
         basket_price_book = self.browser.find_element(*ProductPageLocators.PRODUCT_BASKET_PRICE).text.split('\n')[0].split(':')[1].strip()
         alert_price_book = self.browser.find_element(*ProductPageLocators.PRODUCT_ALERT_PRICE_BOOK).text.strip()
         assert basket_price_book == alert_price_book, (f"Different prices -{basket_price_book}- and alert -{alert_price_book}-")
+
+    def check_success_message_is_not_element(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def check_success_message_is_dissapear(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"

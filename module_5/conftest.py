@@ -9,8 +9,11 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="function")
 def browser(request):
+
     language = request.config.getoption("language")
     param_lang_browser = webdriver.ChromeOptions()
+    # disabled usb-spam logs
+    param_lang_browser.add_experimental_option("excludeSwitches", ["enable-logging"])
     param_lang_browser.add_experimental_option('prefs', {'intl.accept_languages': language})
     browser = webdriver.Chrome(options=param_lang_browser)
     yield browser
