@@ -1,6 +1,4 @@
 from .locators import MainPageLocators
-from .login_page import LoginPage
-
 from .base_page import BasePage
 
 class MainPage(BasePage):
