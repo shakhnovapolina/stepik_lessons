@@ -6,6 +6,7 @@ from .pages.basket_page import BasketPage
 
 link = "http://selenium1py.pythonanywhere.com/"
 
+
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
     def test_guest_can_go_to_login_page(self, browser):
@@ -30,6 +31,3 @@ class TestMainPage:
         basket_page = BasketPage(browser, browser.current_url)
         basket_page.should_be_text_empty_basket()
         basket_page.check_cant_see_product_in_basket_opened()
-
-
-

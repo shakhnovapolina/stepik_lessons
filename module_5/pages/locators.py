@@ -1,12 +1,15 @@
 from selenium.webdriver.common.by import By
 
+
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
+
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+
 
 class LoginPageLocators():
     LOGIN_EMAIL = (By.CSS_SELECTOR, "#id_login-username")
@@ -17,6 +20,7 @@ class LoginPageLocators():
     REGISTRATION_PASSWORD_CONFIRMATION = (By.CSS_SELECTOR, "#id_registration-password2")
     REGISTRATION_BUTTON = (By.XPATH, '//button[@name="registration_submit"]')
 
+
 class ProductPageLocators():
     PRODUCT_BUTTON_ADD_TO_BASKET = (By.XPATH, "//button[contains(@class, 'btn-add-to-basket')]")
     PRODUCT_ALERT_NAME_BOOK = (By.XPATH, "//div[@class='alertinner ']/strong")
@@ -24,6 +28,7 @@ class ProductPageLocators():
     PRODUCT_ALERT_PRICE_BOOK = (By.XPATH, "//div[@class='alertinner ']/p/strong")
     PRODUCT_BASKET_PRICE = (By.XPATH, "//div[contains(@class, 'basket-mini')]")
     SUCCESS_MESSAGE = (By.XPATH, "//div[contains(@class, 'alert-success')]")
+
 
 class BasketPageLocators():
     BASKET_LINK = (By.XPATH, "//a[contains(@href,'basket')]")
