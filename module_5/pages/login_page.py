@@ -24,3 +24,13 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD), "Registration password field is absent"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD_CONFIRMATION), "Registration password confirmation field is absent"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_BUTTON), "Registration button is absent"
+
+    def register_new_user(self, email, password):
+        new_email = self.browser.find_element(*LoginPageLocators.REGISTRATION_EMAIL)
+        new_email.send_keys(email)
+        new_password = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD)
+        new_password.send_keys(password)
+        new_password_confirmation = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD_CONFIRMATION)
+        new_password_confirmation.send_keys(password)
+        button_registration = self.browser.find_element(*LoginPageLocators.REGISTRATION_BUTTON)
+        button_registration.click()
