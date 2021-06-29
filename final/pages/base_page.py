@@ -1,4 +1,7 @@
 import math
+
+from selenium.webdriver.support.select import Select
+
 from .locators import BasePageLocators
 from .locators import BasketPageLocators
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, NoAlertPresentException
@@ -65,3 +68,39 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def should_be_languages_selector(self):
+        assert self.is_element_present(
+            *BasePageLocators.DROPDOWN_LANGUAGE_LOCATOR), "Dropdown list to change language missed"
+        assert self.is_element_present(*BasePageLocators.BUTTON_LANGUAGE_LOCATOR), "Button to change language missed"
+
+    def opened_language_not_like_new(self):
+        search_dropdown = Select(self.browser.find_element(*BasePageLocators.DROPDOWN_LANGUAGE_LOCATOR))
+        assert search_dropdown.all_selected_options != BasePageLocators.NEW_LANG_OPTION, "Browser already has been opened in new lang"
+
+    def change_language(self):
+        search_dropdown = Select(self.browser.find_element(*BasePageLocators.DROPDOWN_LANGUAGE_LOCATOR))
+        search_dropdown.select_by_value(BasePageLocators.NEW_LANG_OPTION)
+        button_confirm_lang = self.browser.find_element(*BasePageLocators.BUTTON_LANGUAGE_LOCATOR)
+        button_confirm_lang.click()
+
+    def check_changed_language_on_button_lang_confirm(self):
+        button_confirm_lang = self.browser.find_element(*BasePageLocators.BUTTON_LANGUAGE_LOCATOR)
+        assert button_confirm_lang.text == BasePageLocators.FRANCH_TEXT_BUTTON, \
+            f"Text on button must be {BasePageLocators.FRANCH_TEXT_BUTTON}"
+
+    def should_be_search_block(self):
+        assert self.is_element_present(*BasePageLocators.SEARCH_FIELD_LOCATOR), "Field to search is absent"
+        assert self.is_element_present(*BasePageLocators.SEARCH_BUTTON_LOCATOR), "Button to search is absent"
+
+    def search_item(self, search_text):
+        search_field = self.browser.find_element(*BasePageLocators.SEARCH_FIELD_LOCATOR)
+        search_field.send_keys(search_text)
+        search_button = self.browser.find_element(*BasePageLocators.SEARCH_BUTTON_LOCATOR)
+        search_button.click()
+
+    def check_searched_item(self, search_text):
+        result_header = self.browser.find_element(*BasePageLocators.HEADER_PAGE_SEARCHED)
+        assert search_text in result_header.text, "Search text was not apply"
+
+

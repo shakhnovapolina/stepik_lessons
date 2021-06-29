@@ -31,3 +31,18 @@ class TestMainPage:
         basket_page = BasketPage(browser, browser.current_url)
         basket_page.should_be_text_empty_basket()
         basket_page.check_cant_see_product_in_basket_opened()
+
+    @pytest.mark.personal_tests
+    @pytest.mark.parametrize('search_text', ["", "Hacking Work"])
+    def test_find_item(self, browser, search_text):
+        page = MainPage(browser, link)
+        page.open()
+        page.should_be_search_block()
+        page.search_item(search_text)
+        page.check_searched_item(search_text)
+
+    @pytest.mark.personal_tests
+    def test_welcom_text_on_start_page(self, browser):
+        page = MainPage(browser, link)
+        page.open()
+        page.should_be_welcome_text()

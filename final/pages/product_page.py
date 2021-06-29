@@ -9,7 +9,6 @@ class ProductPage(BasePage):
 
     def add_to_basket(self):
         button = self.browser.find_element(*ProductPageLocators.PRODUCT_BUTTON_ADD_TO_BASKET)
-        button = self.browser.find_element(*ProductPageLocators.PRODUCT_BUTTON_ADD_TO_BASKET)
         button.click()
 
     def should_be_name_book_in_alert(self):
