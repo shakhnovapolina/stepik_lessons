@@ -9,23 +9,32 @@ link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/'
 class TestCatalogPage:
 
     def test_change_language(self, browser):
+        # Arrange
         page = CatalogPage(browser, link)
+        # Act
         page.open()
         page.should_be_languages_selector()
         page.opened_language_not_like_new()
         page.change_language()
+
+        # Assert
         page.should_be_languages_selector()
         page.should_be_header_to_check()
         page.check_changed_language_on_button_lang_confirm()
         page.check_changed_language_on_header()
 
     def test_more_than_zero_items_in_catalogue(self, browser):
+        # Arrange
         page = CatalogPage(browser, link)
+        # Act
         page.open()
+        # Assert
         page.should_be_more_than_zero_items()
 
     def test_items_card_is_fulled(self, browser):
+        # Arrange
         page = CatalogPage(browser, link)
+        # Act
         page.open()
+        # Assert
         page.check_item_card_info()
-

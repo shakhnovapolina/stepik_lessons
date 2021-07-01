@@ -35,14 +35,20 @@ class TestMainPage:
     @pytest.mark.personal_tests
     @pytest.mark.parametrize('search_text', ["", "Hacking Work"])
     def test_find_item(self, browser, search_text):
+        # Arrange
         page = MainPage(browser, link)
+        # Act
         page.open()
         page.should_be_search_block()
         page.search_item(search_text)
+        # Assert
         page.check_searched_item(search_text)
 
     @pytest.mark.personal_tests
     def test_welcom_text_on_start_page(self, browser):
+        # Arrange
         page = MainPage(browser, link)
+        # Act
         page.open()
+        # Assert
         page.should_be_welcome_text()
